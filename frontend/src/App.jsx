@@ -1,4 +1,5 @@
 import "./App.css";
+import Login from "./components/Login";
 
 function App() {
   return (
@@ -12,15 +13,7 @@ function App() {
         </div>
       </nav>
 
-      <section className="hero">
-        <h1>Track Your Dream Job</h1>
-
-        <p>
-          Keep all your internship and job applications in one place.
-        </p>
-
-        <button>Get Started</button>
-      </section>
+      <Login />
     </>
   );
 }

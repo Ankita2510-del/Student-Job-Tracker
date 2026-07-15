@@ -1,0 +1,48 @@
+.dashboard{
+    padding:40px;
+    text-align:center;
+}
+
+.dashboard h2{
+    color:#2563eb;
+    margin-bottom:10px;
+}
+
+.cards{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin:40px 0;
+}
+
+.card{
+    width:180px;
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+.card h3{
+    color:#2563eb;
+}
+
+.card p{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.add-btn{
+    padding:12px 25px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.add-btn:hover{
+    background:#1d4ed8;
+}

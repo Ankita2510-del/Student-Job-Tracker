@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useEffect } from "react";
 import "./AddJob.css";
 
-function AddJob({ jobs, setJobs, goDashboard }) {
+function AddJob({ jobs, setJobs, goDashboard, editIndex, setEditIndex}) {
     const [job, setJob] = useState({
     company: "",
     role: "",
@@ -10,10 +11,24 @@ function AddJob({ jobs, setJobs, goDashboard }) {
     date: "",
     notes: "",
   });
+  useEffect(() => {
+  if (editIndex !== null) {
+    setJob(jobs[editIndex]);
+  }
+}, [editIndex, jobs]);
 
  const handleSubmit = () => {
-  setJobs([...jobs, job]);
-  alert("Job Added Successfully!");
+  if (editIndex !== null) {
+    const updatedJobs = [...jobs];
+    updatedJobs[editIndex] = job;
+    setJobs(updatedJobs);
+    setEditIndex(null);
+    alert("Job Updated Successfully!");
+  } else {
+    setJobs([...jobs, job]);
+    alert("Job Added Successfully!");
+  }
+
   goDashboard();
 };
 
@@ -70,7 +85,7 @@ function AddJob({ jobs, setJobs, goDashboard }) {
 />
 
         <button onClick={handleSubmit}>
-  Add Job
+  {editIndex !== null ? "Update Job" : "Add Job"}
 </button>
       </div>
     </div>

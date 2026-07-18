@@ -8,6 +8,16 @@ import AddJob from "./components/AddJob";
 function App() {
   const [page, setPage] = useState("dashboard");
   const [jobs, setJobs] = useState([]);
+  const [editIndex, setEditIndex] = useState(null);
+
+  const deleteJob = (index) => {
+    const updatedJobs = jobs.filter((_, i) => i !== index);
+    setJobs(updatedJobs);
+  };
+
+  const editJob = (index) => {setEditIndex(index);
+    setPage("addjob");
+  };
 
   return (
     <>
@@ -22,20 +32,33 @@ function App() {
       </nav>
 
       {page === "login" && <Login />}
-{page === "register" && <Register />}
-{page === "dashboard" && (
-  <Dashboard
-  jobs={jobs}
-  openAddJob={() => setPage("addjob")}
-/>
-)}
-{page === "addjob" && (
-  <AddJob
-    jobs={jobs}
-    setJobs={setJobs}
-    goDashboard={() => setPage("dashboard")}
-  />
-)}
+
+      {page === "register" && <Register />}
+
+      {page === "dashboard" && (
+        <Dashboard
+          jobs={jobs}
+          openAddJob={() => {
+            setEditIndex(null);
+            setPage("addjob");
+          }}
+          deleteJob={deleteJob}
+          editJob={editJob}
+        />
+      )}
+
+      {page === "addjob" && (
+        <AddJob
+          jobs={jobs}
+          setJobs={setJobs}
+          goDashboard={() =>
+            setPage("dashboard")
+          }
+          goDashboard={() => setPage("dashboard")}
+          editIndex={editIndex}
+          setEditIndex={setEditIndex}
+        />
+      )}
     </>
   );
 }

@@ -7,6 +7,7 @@ import AddJob from "./components/AddJob";
 
 function App() {
   const [page, setPage] = useState("dashboard");
+  const [jobs, setJobs] = useState([]);
 
   return (
     <>
@@ -23,9 +24,18 @@ function App() {
       {page === "login" && <Login />}
 {page === "register" && <Register />}
 {page === "dashboard" && (
-  <Dashboard openAddJob={() => setPage("addjob")} />
+  <Dashboard
+  jobs={jobs}
+  openAddJob={() => setPage("addjob")}
+/>
 )}
-{page === "addjob" && <AddJob />}
+{page === "addjob" && (
+  <AddJob
+    jobs={jobs}
+    setJobs={setJobs}
+    goDashboard={() => setPage("dashboard")}
+  />
+)}
     </>
   );
 }

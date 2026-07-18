@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./AddJob.css";
 
-function AddJob() {
+function AddJob({ jobs, setJobs, goDashboard }) {
     const [job, setJob] = useState({
     company: "",
     role: "",
@@ -11,10 +11,11 @@ function AddJob() {
     notes: "",
   });
 
-  const handleSubmit = () => {
-    console.log(job);
-    alert("Job Added Successfully!");
-  };
+ const handleSubmit = () => {
+  setJobs([...jobs, job]);
+  alert("Job Added Successfully!");
+  goDashboard();
+};
 
   return (
     <div className="addjob-container">
